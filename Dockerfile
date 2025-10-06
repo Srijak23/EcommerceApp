@@ -8,16 +8,17 @@ WORKDIR /app
 COPY EcommerceApp/pom.xml .
 COPY EcommerceApp/src ./src
 
-# Build the WAR
-RUN mvn clean package
+# Build the WAR (skip tests for faster build)
+RUN mvn clean package -DskipTests
 
 # Install Tomcat (inside the same image)
 RUN apt-get update && \
     apt-get install -y wget unzip && \
-    wget https://downloads.apache.org/tomcat/tomcat-9/v9.0.85/bin/apache-tomcat-9.0.85.zip && \
-    unzip apache-tomcat-9.0.85.zip && \
-    mv apache-tomcat-9.0.85 /tomcat && \
-    rm apache-tomcat-9.0.85.zip
+    wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.96/bin/apache-tomcat-9.0.96.zip && \
+    unzip apache-tomcat-9.0.96.zip && \
+    mv apache-tomcat-9.0.96 /tomcat && \
+    rm apache-tomcat-9.0.96.zip && \
+    rm -rf /var/lib/apt/lists/*
 
 # Remove default Tomcat apps
 RUN rm -rf /tomcat/webapps/*
