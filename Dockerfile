@@ -5,8 +5,8 @@ FROM maven:3.8.4-openjdk-17-slim
 WORKDIR /app
 
 # Copy Maven config and source code
-COPY pom.xml .
-COPY src ./src
+COPY EcommerceApp/pom.xml .
+COPY EcommerceApp/src ./src
 
 # Build the WAR
 RUN mvn clean package
