@@ -1,5 +1,5 @@
 # Use Tomcat with Java 17
-FROM tomcat:9.0.78-jdk17-openjdk-slim
+FROM tomcat:9.0.96-jdk17-slim
 
 # Remove default webapps
 RUN rm -rf /usr/local/tomcat/webapps/*
